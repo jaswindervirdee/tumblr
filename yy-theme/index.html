@@ -1,0 +1,478 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="" />
+<meta name="apple-mobile-web-app-title" content="">
+<link rel="shortcut icon" type="image/x-icon" href="" />
+<link rel="mask-icon" type="" href="" color="#111" />
+<title>{Title}</title>
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+{block:Description}
+    <meta name="description" content="{MetaDescription}" />
+{/block:Description}
+
+{block:Hidden}
+<meta name="text:Subtitle" content=""/>
+<meta name="if:Show Subtitle" content="1"/>
+<meta name="text:Google analytics ID" content="">
+<meta name="text:fitText" content="0.7">
+{/block:Hidden}
+
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com/">
+<link rel="dns-prefetch" href="//stackpath.bootstrapcdn.com/">
+<link rel="dns-prefetch" href="//fonts.googleapis.com/">
+<link rel="dns-prefetch" href="//code.jquery.com/">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net/">
+<link rel="dns-prefetch" href="//www.googletagmanager.com/">
+
+
+<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js'></script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css'>
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:300&display=swap" rel="stylesheet">
+
+<style>
+	
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	.subheader
+	.nav {
+		font-family: 'Lato', 'Helvetica Neue', helvetica, arial, sans-serif;
+	}
+	
+	a {
+		color: inherit;
+	}
+	
+	a:hover,
+	.navbar-light .navbar-nav .nav-link.current {
+		color: #009CFF;
+	}
+	
+	.inline-mobile-up {
+		display: none;	
+	}
+	
+	@media (min-width: 576px) {
+		.inline-mobile-up {
+			display: inline-block;
+		}
+	}		
+	
+	.header-title {
+		font-family: 'Lato', 'Helvetica Neue', helvetica, arial, sans-serif;
+		font-weight: 700;
+		text-transform: uppercase;
+		line-height: 80%;
+		letter-spacing: -.3rem;
+	}
+	
+	hr.header {
+		height: 1rem;
+		margin-top: 0;
+		border: 0;
+	}
+	
+	.search-input-group input[type="text"] {
+		border-top-left-radius: 15px;
+		border-bottom-left-radius: 15px;
+		padding-left: 12px;
+	}
+	.search-input-group .input-group-append .btn {
+		border-top-right-radius: 15px;
+		border-bottom-right-radius: 15px;
+		padding-right: 8px;
+	}
+	
+	.bigger-thinner {
+		border-bottom: 1px solid;
+		font-family: 'IBM Plex Sans Condensed', sans-serif;
+		font-weight: 300;
+	}
+	
+	.nav-pills>li+li {
+		margin-left: 5px; // 2px by default
+	}
+	
+	.hasTitle .blog-post-title-alt {
+		display: none;
+	}
+	
+	.like_and_reblog_buttons {
+		display: inline-block;
+	}
+	
+	.like_button,
+	.reblog_button {
+		display: inline-block;
+	}
+	
+	.blog-post-meta-notes {
+		display: inline-block;
+	}
+	
+    ol.notes {
+        padding: 0px;
+        list-style-type: none;
+        border-bottom: solid 1px #ccc;
+    }
+
+    ol.notes li.note {
+        border-top: solid 1px #ccc;
+        padding: 10px;
+    }
+
+    ol.notes li.note img.avatar {
+        vertical-align: -4px;
+        margin-right: 10px;
+        width: 16px;
+        height: 16px;
+    }
+
+    ol.notes li.note span.action {
+        font-weight: bold;
+    }
+
+    ol.notes li.note .answer_content {
+        font-weight: normal;
+    }
+
+    ol.notes li.note blockquote {
+        border-color: #eee;
+        padding: 4px 10px;
+        margin: 10px 0px 0px 25px;
+    }
+
+    ol.notes li.note blockquote a {
+        text-decoration: none;
+    }	
+	
+	
+</style>	
+
+
+
+
+
+
+<hr class="header bg-dark"/>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-9 col-sm-12">
+			<h1 class="display-1 header-title">
+				<a href="{BlogURL}">{Title}</a>
+			</h1>
+		</div>
+		<div class="col-lg-3 d-none d-lg-block">
+			<form action="/search" method="get">
+				<div class="input-group search-input-group input-group-sm">
+					<input type="text" class="form-control form-control" placeholder="Search" aria-label="Search Input" aria-describedby="button-addon4" name="q" value="{SearchQuery}"/>
+					<div class="input-group-append" id="button-addon4">
+						<button class="btn btn-secondary" type="submit">GO</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light p-0">
+		<a class="navbar-brand" href="{BlogURL}">
+			<h5>{block:IfShowSubtitle}<span class="inline-mobile-up">{text:Subtitle}</span> {/block:ifShowSubtitle}<span class="text-muted">{BlogURL}</span></h5></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				{block:HasPages} 	      
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link font-weight-bold {block:HomePage}current{/block:HomePage}" href="{BlogURL}">Home</a>
+					</li>
+					
+					{block:Pages}
+					<li class="nav-item">
+						<a class="nav-link font-weight-bold" href="{URL}">{Label}</a>
+					</li>		  
+					{/block:Pages}
+				</ul>
+				{/block:HasPages}
+				<form class="form-inline my-2 my-lg-0 d-lg-none" action="/search" method="get">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{SearchQuery}">
+					<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">GO</button>
+				</form>
+			</div>
+		</nav>  
+
+		<div class="row">
+			<div class="col-md-8 blog-main">
+				{block:Posts inlineMediaWidth="500" inlineNestedMediaWidth="250"}	  
+				<div class="blog-post {PostType} {block:Title}hasTitle{/block:Title}  mb-2">
+					{block:DayPage}
+					<h3 class="bigger-thinner mb-1">{Month} {DayOfMonth}, {Year}</h3>
+					{/block:DayPage}
+					{block:NewDayDate}
+					<h3 class="bigger-thinner mb-1">{Month} {DayOfMonth}, {Year}</h3>
+					{/block:NewDayDate}
+					{block:Title}
+					<h2 class="blog-post-title"><a href="{Permalink}">{Title}</a></h2>
+					{/block:Title}
+					<h2 class="blog-post-title-alt text-capitalize"><a href="{Permalink}">{PostType} Post</a></h2>
+
+					<div class="blog-post-content">
+
+					{block:Text}
+					{Body}	        
+					{/block:Text}
+
+					{block:Photo}
+					<img src="{PhotoURL-1280}" alt="{PhotoAlt}" class="img-fluid"/>
+					{block:Caption}
+					<blockquote class="blockquote">
+					  {Caption}
+					</blockquote>					
+					{/block:Caption}
+					{/block:Photo}
+
+					{block:Panorama}        
+					{LinkOpenTag}
+					<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+					{LinkCloseTag}
+					{block:Caption}
+					<blockquote class="blockquote">
+					  {Caption}
+					</blockquote>	
+					{/block:Caption}
+					{/block:Panorama}
+
+
+					{block:Photoset}
+					{Photoset-500}
+					{block:Caption}
+					<blockquote class="blockquote">
+					  {Caption}
+					</blockquote>
+					{/block:Caption}
+					{/block:Photoset}                       
+
+					{block:Quote}        
+					"{Quote}"
+
+					{block:Source}
+					<blockquote class="blockquote">
+					  <footer class="blockquote-footer">{Source}</footer>
+					</blockquote>
+					{/block:Source}
+					{/block:Quote}
+
+					{block:Link}
+					<li class="post link">
+						<a href="{URL}" class="link" {Target}>{Name}</a>
+
+						{block:Description}
+							<blockquote class="blockquote">
+							  {Caption}
+							</blockquote>	
+						{/block:Description}
+					</li>
+					{/block:Link}        
+
+					{block:Chat}
+					{block:Title}
+					<h3><a href="{Permalink}">{Title}</a></h3>
+					{/block:Title}
+
+					<ul class="chat">
+						{block:Lines}
+						<li class="{Alt} user_{UserNumber}">
+							{block:Label}
+							<span class="label">{Label}</span>
+							{/block:Label}{Line}
+						</li>
+						{/block:Lines}
+					</ul>
+					{/block:Chat}
+
+					{block:Video}
+
+					{Video-500}{block:Caption}
+					<blockquote class="blockquote">
+					  {Caption}
+					</blockquote>	
+					{/block:Caption}
+
+					{/block:Video}
+
+					{block:Audio}
+					{AudioEmbed}{block:Caption}
+					<blockquote class="blockquote">
+					  {Caption}
+					</blockquote>	
+					{/block:Caption}
+					{/block:Audio}                      
+
+				</div>
+
+				<div class="row">
+					<div class="col-12">
+						<p class="lead m-0">
+							<a class="font-weight-bold" href="{Permalink}">Read More...</a>
+						</p>
+					</div>
+
+					<div class="col-6 align-self-end m-0">
+						<div class="like_and_reblog_buttons">
+							<div class="like_button pr-1">
+								{LikeButton color="black" size="12"}
+							</div>
+							<div class="reblog_button pr-1">
+								{ReblogButton color="black" size="12"}
+							</div>
+						</div>
+						<p class="blog-post-meta-notes m-0">
+							<small>| <a href="{Permalink}">{NoteCount} notes</a></small>
+						</p>
+					</div>
+
+					<div class="col-6 align-self-end m-0">
+						<p class="blog-post-meta-date text-right m-0">
+							<small>{block:RebloggedFrom}Reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom} by <a href="{PostAuthorURL}">{PostAuthorName}</a> {DayOfMonthWithZero}.{MonthNumberWithZero}.{ShortYear}</small>
+						</p>
+					</div>
+					{block:PermalinkPage}
+						<div class="col-12 mt-3">
+							{block:HasTags}
+								{block:Tags}
+									<a class="btn btn-secondary btn-sm" href="{TagURLChrono}" role="button">{Tag}</a>									
+								{/block:Tags}
+							{/block:HasTags}
+						</div>
+						<div class="col-12 mt-3">						
+							<div class="input-group input-group-sm">
+								<input type="text" class="form-control" aria-label="Permalink" aria-describedby="permalink" value="{Permalink}">
+							</div>
+						</div>
+						<div class="col-12 my-3">
+							{block:PostNotes}
+								{PostNotes}	
+							{/block:PostNotes}
+						</div>
+					{/block:PermalinkPage}
+				</div>
+
+			</div><!-- /.blog-post -->
+			{/block:Posts}	      
+
+			{block:Pagination}
+			<ul class="nav nav-pills navigation my-3 justify-content-sm-center justify-content-md-end">
+				{block:PreviousPage}
+				<li class="nav-item">
+					<a class="btn btn-sm btn-secondary" href="{PreviousPage}">
+						&laquo;
+					</a>
+				</li>
+				{/block:PreviousPage}
+				{block:NextPage}	
+				<li class="nav-item">     
+					<a class="btn btn-sm btn-secondary" href="{NextPage}">
+						&raquo;
+					</a>
+				</li>
+				{/block:NextPage}	         
+			</ul>
+			{/block:Pagination}
+
+		</div><!-- /.blog-main -->
+
+		<div class="col-xs-12 offset-xs-0 col-md-3 offset-md-1 blog-sidebar">
+			<div class="sidebar-module sidebar-module-inset">
+
+				{block:Twitter}
+				    <div id="twitter" style="display:none;">
+				        <h3><a href="https://twitter.com/{TwitterUsername}">Latest Tweets</a></h3>
+				
+				        <div id="tweets"></div>
+				    </div>
+				
+				    <script type="text/javascript">
+				        function recent_tweets(data) {
+				            for (i=0; i<data.length; i++) {
+				                document.getElementById("tweets").innerHTML =
+				                    document.getElementById("tweets").innerHTML +
+				                    '<a href="https://twitter.com/{TwitterUsername}/status/' +
+				                    (data[i].id_str ? data[i].id_str : data[i].id) +
+				                    '"><div class="content">' + data[i].text +
+				                    '</div></a>';
+				            }
+				            document.getElementById("twitter").style.display = 'block';
+				        }
+				    </script>
+				{/block:Twitter}
+
+
+			</div>
+			<div class="sidebar-module">
+				
+		       {block:Description}
+					<div class="alert alert-secondary" role="alert">
+					  {Description}
+					</div>            
+		        {/block:Description}				
+							
+				{block:Following}				
+				<h4>Following</h4>
+				    <ul class="list-group list-group-flush">
+					    {block:Followed}
+				            <li class="list-group-item">
+				                <a href="{FollowedURL}">{FollowedName}</a>
+				            </li>
+						{/block:Followed}
+				    </ul>
+				{/block:Following}				
+			</div>
+		</div><!-- /.blog-sidebar -->
+	</div>   
+</div>
+
+
+<!-- Put this at the bottom of the page -->
+{block:Twitter}
+    <script type="text/javascript" src="/tweets.js"></script>
+{/block:Twitter}
+<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js'></script>
+<script>
+  jQuery(".display-1").fitText({text:fitText}, { minFontSize: '50px'});;
+</script>
+
+{block:IfGoogleAnalyticsID}    
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157551714-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', '{text:Google Analytics ID}');
+	</script>
+    
+{/block:IfGoogleAnalyticsID}
+
+<!-- Put this at the bottom of the page -->
+{block:Twitter}
+    <script type="text/javascript" src="/tweets.js"></script>
+{/block:Twitter}
+</body>
+</html>
